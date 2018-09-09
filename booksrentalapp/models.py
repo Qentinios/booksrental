@@ -12,3 +12,7 @@ class Books(models.Model):
 class Rent(models.Model):
     book = models.ForeignKey(Books, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    rent_date = models.DateTimeField('date rented')
+    return_date = models.DateTimeField('date returned', default=None, null=True)
+
+
