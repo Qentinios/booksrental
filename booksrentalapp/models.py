@@ -16,3 +16,8 @@ class Rent(models.Model):
     return_date = models.DateTimeField('date returned', default=None, null=True)
 
 
+class Category(models.Model):
+    category = models.CharField(max_length=200)
+    book = models.ForeignKey(Books, on_delete=models.CASCADE)
+
+
