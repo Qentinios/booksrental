@@ -16,3 +16,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'booksrentalapp/signup.html', {'form': form})
+
+def main(request):
+    return render(request, 'booksrentalapp/main.html')
