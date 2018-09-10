@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^signup/$', booksrentalapp_views.signup, name='signup'),
     url(r'admin/', admin.site.urls),
-    url('', booksrentalapp_views.main),
+    url(r'^$', booksrentalapp_views.main),
 ]

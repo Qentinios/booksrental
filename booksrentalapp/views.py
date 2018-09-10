@@ -18,4 +18,4 @@ def signup(request):
     return render(request, 'booksrentalapp/signup.html', {'form': form})
 
 def main(request):
-    return render(request, 'booksrentalapp/main.html')
+    return render(request, 'booksrentalapp/library.html')
