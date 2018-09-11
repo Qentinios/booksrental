@@ -27,5 +27,7 @@ urlpatterns = [
     url(r'^$', booksrentalapp_views.main),
     re_path('^category/(?P<slug>[\w-]+)/$', booksrentalapp_views.category, {}, name="category"),
     path('book/<int:book_id>/', booksrentalapp_views.book_detail, name='book'),
-    path('return/', booksrentalapp_views.return_book, name='return'),
+    path('profile/', booksrentalapp_views.profile, name='profile'),
+    path('return/<int:book_id>/', booksrentalapp_views.return_book, name='return_book'),
+    path('rent/<int:book_id>/', booksrentalapp_views.rent_book, name='rent_book'),
 ]

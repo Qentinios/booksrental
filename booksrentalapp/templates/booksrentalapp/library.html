@@ -32,6 +32,9 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">{{ book.pub_date }}</small>
+                            {% for category in book.bookcategory_set.all %}
+                                <span class="badge badge-secondary float-right">{{ category.category }}</span>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

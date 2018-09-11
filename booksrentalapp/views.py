@@ -4,8 +4,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.template import loader
 from django.core.paginator import Paginator
-
+from django.contrib.auth.decorators import login_required
 from booksrentalapp.models import Category, Book
+from django.contrib import messages
 
 
 def main(request):
@@ -32,13 +33,16 @@ def book_detail(request, book_id):
     try:
         book = Book.objects.get(pk=book_id)
     except Book.DoesNotExist:
-        raise Http404("Question does not exist")
+        raise Http404("Book does not exist")
+
     return render(request, 'booksrentalapp/book.html', {'book': book})
 
 
-def return_book(request):
+@login_required
+def profile(request):
+    messages.add_message(request, messages.INFO, 'Welcome ' + request.user.username)
     books = Book.objects.all()
-    return render(request, 'booksrentalapp/return.html', {'books': books})
+    return render(request, 'booksrentalapp/profile.html', {'books': books})
 
 
 def category(request, slug):
@@ -63,3 +67,29 @@ def show_library(request, books):
         'books': books,
     }
     return HttpResponse(template.render(context, request))
+
+
+@login_required
+def return_book(request, book_id):
+    try:
+        book = Book.objects.get(pk=book_id)
+    except Book.DoesNotExist:
+        raise Http404("Book does not exist")
+
+    # return
+
+    messages.add_message(request, messages.SUCCESS, 'Rented book: ' + book.title)
+    pass
+
+
+@login_required
+def rent_book(request, book_id):
+    try:
+        book = Book.objects.get(pk=book_id)
+    except Book.DoesNotExist:
+        raise Http404("Book does not exist")
+    
+    # rent
+
+    messages.add_message(request, messages.SUCCESS, 'Returned book: ' + book.title)
+    pass
