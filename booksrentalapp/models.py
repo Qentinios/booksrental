@@ -20,7 +20,7 @@ class Rent(models.Model):
     return_date = models.DateTimeField('date returned', default=None, null=True)
 
     def __str__(self):
-        return self.book.title + " -> " + self.user.name
+        return self.book.title + " -> " + self.user.username
 
 
 class Category(models.Model):

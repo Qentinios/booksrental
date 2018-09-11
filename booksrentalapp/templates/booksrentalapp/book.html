@@ -21,7 +21,8 @@
             </div>
             <div class="card-footer">
                 <small class="text-muted">{{ book.pub_date }}</small>
-                <a class="btn btn-primary float-right" href="/rent/{{ book.id }}">Rent me!</a>
+                <a class="btn float-right {% if book.rented %}btn-warning disabled{% else %}btn-primary{% endif %}"
+                   href="/rent/{{ book.id }}">{% if book.rented %}Not available{% else %}Rent me!{% endif %}</a>
             </div>
         </div>
     </div>
