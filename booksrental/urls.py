@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.urls import path, re_path
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from booksrentalapp import views as booksrentalapp_views
@@ -24,4 +25,7 @@ urlpatterns = [
     url(r'^signup/$', booksrentalapp_views.signup, name='signup'),
     url(r'admin/', admin.site.urls),
     url(r'^$', booksrentalapp_views.main),
+    re_path('^category/(?P<slug>[\w-]+)/$', booksrentalapp_views.category, {}, name="category"),
+    path('book/<int:book_id>/', booksrentalapp_views.book_detail, name='book'),
+    path('return/', booksrentalapp_views.return_book, name='return'),
 ]
